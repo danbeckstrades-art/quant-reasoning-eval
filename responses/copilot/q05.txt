@@ -1,0 +1,53 @@
+This is a classic Bayes' Theorem problem.
+
+Given
+Sensitivity = 99% = P(+∣D)P(+|D)P(+∣D)
+If a person has the condition, the test is positive 99% of the time.
+Specificity = 95% = P(−∣¬D)P(-|\neg D)P(−∣¬D)
+Therefore the false positive rate is 5%: P(+∣¬D)=0.05P(+|\neg D)=0.05P(+∣¬D)=0.05
+Prevalence = 1%: P(D)=0.01,P(¬D)=0.99P(D)=0.01,\qquad P(\neg D)=0.99P(D)=0.01,P(¬D)=0.99
+
+We want:
+
+P(D∣+)P(D|+)P(D∣+)
+
+the probability that a person actually has the condition given that they tested positive.
+
+Using Bayes' Theorem
+P(D∣+)=P(+∣D)P(D)P(+∣D)P(D)+P(+∣¬D)P(¬D)P(D|+) = \frac{P(+|D)P(D)} {P(+|D)P(D)+P(+|\neg D)P(\neg D)}P(D∣+)=P(+∣D)P(D)+P(+∣¬D)P(¬D)P(+∣D)P(D)​
+
+Substitute the values:
+
+P(D∣+)=(0.99)(0.01)(0.99)(0.01)+(0.05)(0.99)P(D|+) = \frac{(0.99)(0.01)} {(0.99)(0.01)+(0.05)(0.99)}P(D∣+)=(0.99)(0.01)+(0.05)(0.99)(0.99)(0.01)​
+
+Compute the numerator:
+
+(0.99)(0.01)=0.0099(0.99)(0.01)=0.0099(0.99)(0.01)=0.0099
+
+Compute the denominator:
+
+0.0099+0.0495=0.05940.0099 + 0.0495 = 0.05940.0099+0.0495=0.0594
+
+Therefore,
+
+P(D∣+)=0.00990.0594=0.1667P(D|+) = \frac{0.0099}{0.0594} = 0.1667P(D∣+)=0.05940.0099​=0.1667
+Answer
+P(D∣+)≈0.167\boxed{P(D|+) \approx 0.167}P(D∣+)≈0.167​
+
+or about 16.7%.
+
+Intuitive check (using 10,000 people)
+1% have the condition → 100 people.
+99% sensitivity → 99 of those 100 test positive.
+9,900 do not have the condition.
+5% false-positive rate → 0.05×9900=4950.05 \times 9900 = 4950.05×9900=495 false positives.
+
+Total positive tests:
+
+99+495=59499 + 495 = 59499+495=594
+
+Of these, only 99 actually have the condition:
+
+99594=0.1667\frac{99}{594} = 0.166759499​=0.1667
+
+So a positive test implies about a 16.7% chance of actually having the condition, despite the test being highly sensitive and fairly specific. This is because the condition is rare (only 1% prevalence).

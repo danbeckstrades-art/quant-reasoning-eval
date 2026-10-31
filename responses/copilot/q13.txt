@@ -1,0 +1,55 @@
+For a proportion, the margin of error (MOE) at a fixed confidence level is
+
+MOE=zp(1−p)n,\text{MOE}=z\sqrt{\frac{p(1-p)}{n}},MOE=znp(1−p)​​,
+
+where:
+
+zzz is the critical value (1.96 for 95% confidence),
+ppp is the true proportion,
+nnn is the sample size.
+
+When the true proportion is near 50%50\%50%, p=0.5p=0.5p=0.5, and p(1−p)=0.25p(1-p)=0.25p(1−p)=0.25, which is the largest possible value. Then
+
+MOE=1.960.25n=0.98n.\text{MOE}=1.96\sqrt{\frac{0.25}{n}} =\frac{0.98}{\sqrt{n}}.MOE=1.96n0.25​​=n​0.98​.
+
+Notice that the margin of error is inversely proportional to n\sqrt{n}n​:
+
+MOE∝1n.\text{MOE}\propto \frac{1}{\sqrt{n}}.MOE∝n​1​.
+To cut the margin of error in half
+
+Suppose the original sample size is n=500n=500n=500 and the margin of error is about 4.4%4.4\%4.4%.
+
+We want the new margin of error to be
+
+4.4%2=2.2%.\frac{4.4\%}{2}=2.2\%.24.4%​=2.2%.
+
+Since
+
+MOEnewMOEold=noldnnew,\frac{\text{MOE}_{\text{new}}}{\text{MOE}_{\text{old}}} = \sqrt{\frac{n_{\text{old}}}{n_{\text{new}}}},MOEold​MOEnew​​=nnew​nold​​​,
+
+setting MOEnew=12MOEold\text{MOE}_{\text{new}} = \frac12 \text{MOE}_{\text{old}}MOEnew​=21​MOEold​ gives
+
+12=500nnew.\frac12=\sqrt{\frac{500}{n_{\text{new}}}}.21​=nnew​500​​.
+
+Squaring both sides:
+
+14=500nnew,\frac14=\frac{500}{n_{\text{new}}},41​=nnew​500​,
+
+so
+
+nnew=4(500)=2000.n_{\text{new}}=4(500)=2000.nnew​=4(500)=2000.
+Check with the formula
+
+For n=500n=500n=500,
+
+MOE=1.960.25500≈0.0438=4.38%.\text{MOE}=1.96\sqrt{\frac{0.25}{500}} \approx 0.0438 =4.38\%.MOE=1.965000.25​​≈0.0438=4.38%.
+
+For n=2000n=2000n=2000,
+
+MOE=1.960.252000≈0.0219=2.19%.\text{MOE}=1.96\sqrt{\frac{0.25}{2000}} \approx 0.0219 =2.19\%.MOE=1.9620000.25​​≈0.0219=2.19%.
+
+This is essentially half of 4.38%4.38\%4.38%.
+
+Answer
+
+You must poll 2,000 people. The reason is that the margin of error decreases as 1/n1/\sqrt{n}1/n​, so halving the margin of error requires four times as many respondents.

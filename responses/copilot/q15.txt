@@ -1,0 +1,35 @@
+(a) Is the overall false positive rate still 5%?
+
+No. If the analyst repeatedly checks the data and stops as soon as a p-value falls below 0.05, the chance of a false positive becomes greater than 5%. This is often called optional stopping, peeking, or multiple testing over time.
+
+(b) Roughly what is it?
+
+Under the null hypothesis (no true difference), each look has about a 5% chance of producing p<0.05p < 0.05p<0.05.
+
+If we (approximately) treat the 10 weekly looks as independent, then:
+
+P(at least one false positive)=1−(1−0.05)10P(\text{at least one false positive}) = 1 - (1 - 0.05)^{10}P(at least one false positive)=1−(1−0.05)10 =1−0.9510≈1−0.599≈0.401= 1 - 0.95^{10} \approx 1 - 0.599 \approx 0.401=1−0.9510≈1−0.599≈0.401 ≈40%\approx 40\%≈40%
+
+So the overall false positive rate is roughly 40%, not 5%.
+
+In a real A/B test the looks are not independent because they use overlapping data, so the exact rate differs, but it is still substantially larger than 5%. The 40% figure is the standard rough approximation.
+
+(c) Two ways to avoid the problem
+
+Fix the sample size (or end date) in advance and analyze only once.
+
+Decide beforehand how long the experiment will run.
+Do not stop early based on intermediate p-values.
+
+Use a sequential testing method that adjusts for repeated looks.
+
+Examples: alpha spending functions, O'Brien-Fleming boundaries, Pocock boundaries, group-sequential designs, or always-valid p-values.
+These methods allow interim monitoring while maintaining the desired overall Type I error rate.
+
+A third common approach is a multiple-testing correction such as Bonferroni, though formal sequential-testing procedures are usually preferred for repeated interim analyses.
+
+Answer summary:
+
+(a) No.
+(b) Approximately 40% (1−0.95101-0.95^{10}1−0.9510).
+(c) Pre-specify a single final analysis, or use a sequential-testing procedure that controls the overall Type I error rate.

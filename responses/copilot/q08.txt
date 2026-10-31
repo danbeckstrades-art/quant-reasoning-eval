@@ -1,0 +1,81 @@
+Let's build the confusion matrices first.
+
+Dataset
+Total transactions = 10,000
+Fraudulent transactions = 100
+Legitimate transactions = 9,900
+Model A: Flags Nothing
+
+Since it never predicts fraud:
+
+True Positives (TP) = 0
+False Positives (FP) = 0
+False Negatives (FN) = 100
+True Negatives (TN) = 9,900
+Accuracy
+Accuracy=TP+TNTotal=0+990010000=0.99=99%\text{Accuracy}=\frac{TP+TN}{Total} =\frac{0+9900}{10000} =0.99=99\%Accuracy=TotalTP+TN​=100000+9900​=0.99=99%
+Precision
+Precision=TPTP+FP=00\text{Precision}=\frac{TP}{TP+FP} =\frac{0}{0}Precision=TP+FPTP​=00​
+
+Precision is typically treated as undefined (or reported as 0) because the model never predicts any positives.
+
+Recall
+Recall=TPTP+FN=0100=0\text{Recall}=\frac{TP}{TP+FN} =\frac{0}{100} =0Recall=TP+FNTP​=1000​=0
+
+Model A
+
+Accuracy = 99%
+Precision = undefined (or 0)
+Recall = 0%
+Model B: Flags 200 Transactions, Catches 80 Frauds
+
+Given:
+
+TP = 80
+Total flagged = 200
+
+Therefore:
+
+FP=200−80=120FP = 200 - 80 = 120FP=200−80=120
+
+Since there are 100 frauds total:
+
+FN=100−80=20FN = 100 - 80 = 20FN=100−80=20
+
+And:
+
+TN=9900−120=9780TN = 9900 - 120 = 9780TN=9900−120=9780
+Accuracy
+Accuracy=80+978010000=986010000=0.986=98.6%\text{Accuracy}=\frac{80+9780}{10000} =\frac{9860}{10000} =0.986 =98.6\%Accuracy=1000080+9780​=100009860​=0.986=98.6%
+Precision
+Precision=8080+120=80200=0.40=40%\text{Precision} =\frac{80}{80+120} =\frac{80}{200} =0.40 =40\%Precision=80+12080​=20080​=0.40=40%
+Recall
+Recall=8080+20=80100=0.80=80%\text{Recall} =\frac{80}{80+20} =\frac{80}{100} =0.80 =80\%Recall=80+2080​=10080​=0.80=80%
+
+Model B
+
+Accuracy = 98.6%
+Precision = 40%
+Recall = 80%
+Comparison
+Metric	Model A	Model BAccuracy	99.0%	98.6%
+Precision	Undefined (or 0%)	40%
+Recall	0%	80%
+Which Model Is More Useful?
+
+Model B is far more useful.
+
+Although its accuracy (98.6%) is slightly lower than Model A's (99%), it detects 80 out of 100 fraud cases, while Model A detects none. In fraud detection, missing fraud is usually much more costly than investigating some false alarms.
+
+Why Is Accuracy a Poor Guide Here?
+
+The dataset is highly imbalanced:
+
+Fraud rate = 100/10000=1%100/10000 = 1\%100/10000=1%
+Non-fraud rate = 99%99\%99%
+
+A model can achieve 99% accuracy simply by predicting every transaction as non-fraud, as Model A does. The high accuracy comes from correctly classifying the overwhelming majority of legitimate transactions, not from detecting fraud.
+
+Therefore, in imbalanced problems like fraud detection, precision, recall, F1-score, PR curves, and cost-sensitive metrics are much more informative than accuracy alone.
+
+Key insight: Model A has the higher accuracy but is essentially useless for finding fraud. Model B sacrifices only 0.4 percentage points of accuracy yet catches 80% of fraudulent transactions.

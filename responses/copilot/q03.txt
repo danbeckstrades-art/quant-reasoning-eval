@@ -1,0 +1,75 @@
+Let's compute the recovery rates.
+
+(a) Overall recovery rate
+
+New treatment
+
+Total recovered = 640 + 60 = 700
+Total patients = 1000
+Recovery rate=7001000=70%\text{Recovery rate}=\frac{700}{1000}=70\%Recovery rate=1000700​=70%
+
+Standard care
+
+Total recovered = 180 + 280 = 460
+Total patients = 1000
+Recovery rate=4601000=46%\text{Recovery rate}=\frac{460}{1000}=46\%Recovery rate=1000460​=46%
+
+Answer (a): The new treatment has the higher overall recovery rate (70% vs 46%).
+
+(b) Recovery rate within each severity level
+Mild patients
+
+New treatment:
+
+640800=80%\frac{640}{800}=80\%800640​=80%
+
+Standard care:
+
+180200=90%\frac{180}{200}=90\%200180​=90%
+
+For mild cases, standard care is better (90% vs 80%).
+
+Severe patients
+
+New treatment:
+
+60200=30%\frac{60}{200}=30\%20060​=30%
+
+Standard care:
+
+280800=35%\frac{280}{800}=35\%800280​=35%
+
+For severe cases, standard care is better (35% vs 30%).
+
+Answer (b): Within both severity levels, standard care has the higher recovery rate.
+
+(c) Explain the apparent contradiction
+
+This is a classic example of Simpson's paradox.
+
+Although standard care has a higher recovery rate within each subgroup, the groups are distributed very differently between treatments:
+
+Severity	New treatment	Standard careMild	800	200
+Severe	200	800
+
+The new treatment was given mostly to mild patients (who have a high chance of recovery regardless of treatment), while standard care was given mostly to severe patients (who have a much lower chance of recovery).
+
+Because the new-treatment group contains many more mild patients, its overall recovery rate is boosted. Conversely, the standard-care group contains many more severe patients, which depresses its overall recovery rate.
+
+The overall comparison therefore mixes together groups with very different baseline risks and gives a misleading impression.
+
+Which treatment does the data favor?
+
+Since severity is a major prognostic factor and was measured before treatment, the fair comparison is within severity levels (or equivalently after adjusting for severity).
+
+Mild: standard care 90% vs new 80%
+Severe: standard care 35% vs new 30%
+
+Thus, the adjusted evidence favors standard care, because it performs better in both severity categories. The overall 70% vs 46% comparison is confounded by the unequal distribution of mild and severe patients across treatments.
+
+Conclusion:
+
+Overall: New treatment appears better (70% vs 46%).
+Within both severity groups: Standard care is better.
+Explanation: Simpson's paradox caused by unequal severity distributions.
+Preferred interpretation: After accounting for severity, the data favor standard care.

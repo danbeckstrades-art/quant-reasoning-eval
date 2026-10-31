@@ -1,0 +1,24 @@
+For a two-sample A/B test comparing proportions, a common normal-approximation sample size formula (equal group sizes) is
+
+n=[z1−α/22pˉ(1−pˉ)+z1−βp1(1−p1)+p2(1−p2)]2(p2−p1)2,n=\frac{\left[z_{1-\alpha/2}\sqrt{2\bar p(1-\bar p)} +z_{1-\beta}\sqrt{p_1(1-p_1)+p_2(1-p_2)}\right]^2} {(p_2-p_1)^2},n=(p2​−p1​)2[z1−α/2​2pˉ​(1−pˉ​)​+z1−β​p1​(1−p1​)+p2​(1−p2​)​]2​,
+
+where:
+
+p1=0.10p_1 = 0.10p1​=0.10 (control conversion rate)
+p2=0.12p_2 = 0.12p2​=0.12 (treatment conversion rate)
+pˉ=(p1+p2)/2=0.11\bar p = (p_1+p_2)/2 = 0.11pˉ​=(p1​+p2​)/2=0.11
+α=0.05\alpha = 0.05α=0.05 (two-sided), so z1−α/2=1.96z_{1-\alpha/2}=1.96z1−α/2​=1.96
+Power =0.80=0.80=0.80, so β=0.20\beta=0.20β=0.20 and z1−β=0.84z_{1-\beta}=0.84z1−β​=0.84
+Step 1: Compute the standard deviation terms
+2pˉ(1−pˉ)=2(0.11)(0.89)=0.1958≈0.4425\sqrt{2\bar p(1-\bar p)} = \sqrt{2(0.11)(0.89)} = \sqrt{0.1958} \approx 0.44252pˉ​(1−pˉ​)​=2(0.11)(0.89)​=0.1958​≈0.4425 p1(1−p1)+p2(1−p2)=0.10(0.90)+0.12(0.88)=0.1956≈0.4423\sqrt{p_1(1-p_1)+p_2(1-p_2)} = \sqrt{0.10(0.90)+0.12(0.88)} = \sqrt{0.1956} \approx 0.4423p1​(1−p1​)+p2​(1−p2​)​=0.10(0.90)+0.12(0.88)​=0.1956​≈0.4423
+Step 2: Multiply by the z-values
+1.96(0.4425)≈0.8671.96(0.4425)\approx 0.8671.96(0.4425)≈0.867 0.84(0.4423)≈0.3720.84(0.4423)\approx 0.3720.84(0.4423)≈0.372 0.867+0.372=1.2390.867+0.372=1.2390.867+0.372=1.239
+Step 3: Square and divide by the effect size squared
+
+The detectable difference is
+
+Δ=p2−p1=0.02.\Delta = p_2-p_1 = 0.02.Δ=p2​−p1​=0.02. n=1.23920.022=1.5350.0004≈3838.n = \frac{1.239^2}{0.02^2} = \frac{1.535}{0.0004} \approx 3838.n=0.0221.2392​=0.00041.535​≈3838.
+Result
+n≈3, ⁣840 users per group\boxed{n \approx 3,\!840 \text{ users per group}}n≈3,840 users per group​
+
+So you would need about 3.8k users in each arm (roughly 7.7k users total) to detect an increase in conversion from 10% to 12% with a two-sided 5% significance level and 80% power using the normal approximation.

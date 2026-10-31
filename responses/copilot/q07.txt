@@ -1,0 +1,48 @@
+Let XXX be the number of metrics declared significant when all 20 null hypotheses are actually true.
+
+Each test is conducted at significance level α=0.05\alpha = 0.05α=0.05, so for any single metric:
+
+P(false positive)=0.05.P(\text{false positive}) = 0.05.P(false positive)=0.05.
+
+Because the tests are independent:
+
+(a) Probability of at least one significant result
+
+First find the probability of no false positives:
+
+P(none significant)=(1−0.05)20=0.9520≈0.3585.P(\text{none significant})=(1-0.05)^{20}=0.95^{20}\approx 0.3585.P(none significant)=(1−0.05)20=0.9520≈0.3585.
+
+Therefore,
+
+P(at least one significant)=1−0.9520≈1−0.3585≈0.6415.P(\text{at least one significant}) =1-0.95^{20} \approx 1-0.3585 \approx 0.6415.P(at least one significant)=1−0.9520≈1−0.3585≈0.6415. P(at least one significant)≈0.642\boxed{P(\text{at least one significant}) \approx 0.642}P(at least one significant)≈0.642​
+
+So there is about a 64.2% chance of seeing at least one “significant” result purely by chance.
+
+(b) Expected number of false positives
+
+The number of false positives follows a binomial distribution:
+
+X∼Binomial(n=20,p=0.05).X \sim \text{Binomial}(n=20, p=0.05).X∼Binomial(n=20,p=0.05).
+
+The expectation is
+
+E[X]=np=20(0.05)=1.E[X] = np = 20(0.05)=1.E[X]=np=20(0.05)=1. E[X]=1\boxed{E[X]=1}E[X]=1​
+
+Thus, on average, 1 false positive is expected among the 20 tests.
+
+(c) Bonferroni-corrected significance threshold
+
+The Bonferroni correction divides the overall family-wise error rate by the number of tests:
+
+αBonf=0.0520=0.0025.\alpha_{\text{Bonf}}=\frac{0.05}{20}=0.0025.αBonf​=200.05​=0.0025. αBonf=0.0025\boxed{\alpha_{\text{Bonf}}=0.0025}αBonf​=0.0025​
+
+So each individual test would need
+
+p<0.0025p < 0.0025p<0.0025
+
+to be declared significant under the Bonferroni correction.
+
+Answers
+(a) 1−0.9520≈0.64151-0.95^{20} \approx 0.64151−0.9520≈0.6415 (about 64.2%)
+(b) Expected false positives =20(0.05)=1= 20(0.05)=\mathbf{1}=20(0.05)=1
+(c) Bonferroni threshold =0.0520=0.0025= \frac{0.05}{20}=\mathbf{0.0025}=200.05​=0.0025 per test.

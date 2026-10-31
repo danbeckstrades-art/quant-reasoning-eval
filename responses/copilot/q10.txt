@@ -1,0 +1,125 @@
+
+No. The observed improvement is exactly what you would expect to see even if the tutoring had no effect at all, because the students were selected for having unusually low scores on the first test.
+
+This is the phenomenon of regression to the mean.
+
+Step 1: Find the average initial score of the tutoring group
+The students selected for tutoring averaged 1.5 standard deviations below the mean on Test 1.
+
+Mean
+1
+=
+70
+−
+1.5
+(
+15
+)
+=
+70
+−
+22.5
+=
+47.5
+Mean 
+1
+​
+ =70−1.5(15)=70−22.5=47.5
+So their average first-test score was 47.5.
+
+Step 2: Predict their average retest score under no treatment effect
+For two variables with the same mean and standard deviation, the regression prediction is
+
+E
+(
+Y
+∣
+X
+)
+=
+μ
++
+r
+(
+X
+−
+μ
+)
+E(Y∣X)=μ+r(X−μ)
+where:
+
+μ
+=
+70
+μ=70
+r
+=
+0.6
+r=0.6
+X
+=
+47.5
+X=47.5
+Thus,
+
+E
+(
+Y
+∣
+X
+=
+47.5
+)
+=
+70
++
+0.6
+(
+47.5
+−
+70
+)
+E(Y∣X=47.5)=70+0.6(47.5−70)
+=
+70
++
+0.6
+(
+−
+22.5
+)
+=
+70
+−
+13.5
+=
+56.5
+=70+0.6(−22.5)=70−13.5=56.5
+So even without any tutoring effect, we would expect the group's average retest score to be 56.5.
+
+Step 3: Compute the expected gain
+56.5
+−
+47.5
+=
+9
+56.5−47.5=9
+points.
+
+Therefore, because of regression to the mean alone, the selected low-scoring students are expected to improve by 9 points on average.
+
+Step 4: Compare with the observed gain
+Observed gain:
+
+8
+ points
+8 points
+Expected gain from regression to the mean:
+
+9
+ points
+9 points
+The observed improvement is actually slightly smaller than what would be expected even if tutoring had no effect.
+
+Conclusion
+The principal's conclusion is not justified. Since the students were chosen because they had unusually low initial scores, an average improvement was expected automatically due to regression to the mean. The observed gain of 8 points does not exceed the 9-point gain predicted from regression alone, so these data provide no evidence that the tutoring program improved scores. To assess effectiveness, the school would need a comparable control group of low-scoring students who were not tutored.

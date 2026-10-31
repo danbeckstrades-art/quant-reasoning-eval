@@ -1,5 +1,5 @@
-model name and version:
-date:
-new or temporary chat (yes/no):
-tools or web search on (yes/no):
-notes:
+model name and version: Microsoft Copilot Auto
+date: 10/31/2026
+new or temporary chat (yes/no): yes, a new chat for each question
+tools or web search on (yes/no): (replace with yes or no, and what mode you used)
+notes: Web app in Edge, default settings. Each question was pasted exactly as written, with nothing added and no follow-ups.

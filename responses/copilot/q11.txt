@@ -1,0 +1,49 @@
+(a) What is wrong with the independent two-sample t-test?
+
+The before and after measurements come from the same 30 users, so the observations are paired, not independent.
+
+An independent two-sample t-test incorrectly treats the before and after samples as unrelated groups and ignores the within-person pairing. This loses information about how each user's score changed and typically gives an incorrect estimate of the standard error.
+
+The correct analysis is a paired t-test, which works with the 30 individual differences:
+
+di=afteri−beforeid_i = \text{after}_i - \text{before}_idi​=afteri​−beforei​
+
+and tests whether the population mean difference is zero.
+
+(b) Correct paired t-test
+
+Given:
+
+Number of pairs: n=30n = 30n=30
+Mean difference: dˉ=2.0\bar d = 2.0dˉ=2.0
+Standard deviation of differences: sd=5.0s_d = 5.0sd​=5.0
+
+Test:
+
+H0:μd=0H_0:\mu_d = 0H0​:μd​=0 HA:μd≠0H_A:\mu_d \neq 0HA​:μd​=0
+
+The paired t-statistic is
+
+t=dˉ−0sd/nt=\frac{\bar d-0}{s_d/\sqrt{n}}t=sd​/n​dˉ−0​
+
+Substitute the values:
+
+t=2.05.0/30t=\frac{2.0}{5.0/\sqrt{30}}t=5.0/30​2.0​ 30≈5.477\sqrt{30}\approx 5.47730​≈5.477 t=2.0×5.4775.0t=\frac{2.0\times 5.477}{5.0}t=5.02.0×5.477​ t≈10.9545.0t\approx \frac{10.954}{5.0}t≈5.010.954​ t≈2.19t \approx 2.19t≈2.19
+
+Degrees of freedom:
+
+df=n−1=29df=n-1=29df=n−1=29
+
+Compare with the given two-sided critical value:
+
+∣t∣=2.19>2.045|t| = 2.19 > 2.045∣t∣=2.19>2.045
+
+Therefore, reject H0H_0H0​ at the 5% significance level.
+
+Conclusion
+
+The correct paired t-test gives
+
+t≈2.19,df=29\boxed{t \approx 2.19,\quad df=29}t≈2.19,df=29​
+
+Since 2.19>2.0452.19 > 2.0452.19>2.045, there is sufficient evidence at the 5% level that the redesign changed the mean measurement (the mean increase is positive, +2.0+2.0+2.0).

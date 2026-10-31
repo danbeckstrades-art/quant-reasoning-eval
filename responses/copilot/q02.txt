@@ -1,0 +1,30 @@
+For a population proportion, the 95% Wald confidence interval is:
+
+p^±zα/2p^(1−p^)n\hat{p} \pm z_{\alpha/2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}p^​±zα/2​np^​(1−p^​)​​
+Step 1: Compute the sample proportion
+p^=xn=120400=0.30\hat{p}=\frac{x}{n}=\frac{120}{400}=0.30p^​=nx​=400120​=0.30
+Step 2: Find the standard error
+SE=p^(1−p^)nSE=\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}SE=np^​(1−p^​)​​ SE=(0.30)(0.70)400SE=\sqrt{\frac{(0.30)(0.70)}{400}}SE=400(0.30)(0.70)​​ SE=0.21400SE=\sqrt{\frac{0.21}{400}}SE=4000.21​​ SE=0.000525SE=\sqrt{0.000525}SE=0.000525​ SE≈0.0229SE \approx 0.0229SE≈0.0229
+Step 3: Find the margin of error
+
+For a 95% confidence level:
+
+z0.025=1.96z_{0.025}=1.96z0.025​=1.96 ME=1.96(0.0229)≈0.0449ME=1.96(0.0229)\approx 0.0449ME=1.96(0.0229)≈0.0449
+Step 4: Construct the confidence interval
+0.30±0.04490.30 \pm 0.04490.30±0.0449
+
+Lower limit:
+
+0.30−0.0449=0.25510.30-0.0449=0.25510.30−0.0449=0.2551
+
+Upper limit:
+
+0.30+0.0449=0.34490.30+0.0449=0.34490.30+0.0449=0.3449
+95% Wald Confidence Interval
+(0.255, 0.345)\boxed{(0.255,\ 0.345)}(0.255, 0.345)​
+
+or, expressed as percentages,
+
+25.5%≤p≤34.5%\boxed{25.5\% \le p \le 34.5\%}25.5%≤p≤34.5%​
+
+Interpretation: We are 95% confident that the true population proportion of users who prefer feature A lies between 25.5% and 34.5%.

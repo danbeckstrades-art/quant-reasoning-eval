@@ -1,0 +1,81 @@
+Yes. The reviewer is right, although the severity depends on the preprocessing step.
+
+What is the leakage?
+
+StandardScaler estimates the mean and standard deviation of each feature from the data:
+
+z=x−μσz = \frac{x-\mu}{\sigma}z=σx−μ​
+
+If you fit the scaler on the entire dataset before cross-validation, then the mean (μ\muμ) and standard deviation (σ\sigmaσ) are computed using information from all observations, including those that will later serve as validation-fold data.
+
+In 5-fold cross-validation, each validation fold is supposed to be completely unseen during training. But when scaling parameters are estimated from the whole dataset, every validation observation contributes a little to the scaling applied to the training data and to itself. That is leakage because information from the validation set influences the model-building process.
+
+Why is this a problem?
+
+Cross-validation is intended to estimate how the model will perform on genuinely new data.
+
+The correct procedure is:
+
+Split into train and validation fold.
+Fit the scaler only on the training fold.
+Transform both train and validation fold using that scaler.
+Train the model on the transformed training fold.
+Evaluate on the transformed validation fold.
+
+When scaling is done beforehand on the full dataset, the validation fold is no longer fully independent. The resulting validation score is therefore slightly optimistic.
+
+How large is the effect likely to be?
+
+For ordinary standardization, the effect is usually small, especially when:
+
+the dataset is large,
+folds contain many observations,
+feature distributions are stable.
+
+Each validation observation affects the global mean and standard deviation only a little, so the bias is often modest.
+
+However, the leakage can become more noticeable when:
+
+the dataset is small,
+there are strong outliers,
+feature distributions vary substantially across folds.
+
+Also, while standardization leakage is often mild, the same pattern can create much larger problems with preprocessing steps such as:
+
+feature selection,
+imputation using global statistics,
+target encoding,
+PCA,
+dimensionality reduction.
+
+Those can produce seriously inflated cross-validation scores if fitted before folding.
+
+How should it be fixed?
+
+Use a pipeline so that preprocessing is refit within each cross-validation split.
+
+For example in scikit-learn:
+
+Python
+from sklearn.pipeline import Pipeline
+from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import cross_val_score
+from sklearn.linear_model import LogisticRegression
+ 
+pipe = Pipeline([
+('scaler', StandardScaler()),
+('model', LogisticRegression())
+])
+ 
+scores = cross_val_score(pipe, X, y, cv=5)
+
+Here, for each fold:
+
+StandardScaler.fit() is run only on that fold's training data.
+The validation fold is transformed using statistics from the training fold only.
+
+This produces an unbiased cross-validation estimate.
+
+Bottom line
+
+The reviewer is correct: fitting StandardScaler before cross-validation introduces data leakage because the validation folds influence the scaling parameters. The bias is usually small for simple standardization, but it still makes the reported validation score slightly optimistic. The proper solution is to include the scaler inside the cross-validation procedure, typically via a pipeline.

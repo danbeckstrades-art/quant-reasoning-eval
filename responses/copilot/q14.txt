@@ -1,0 +1,55 @@
+Let the positives be P={0.9,0.6,0.4}P=\{0.9, 0.6, 0.4\}P={0.9,0.6,0.4} and the negatives be N={0.7,0.3,0.2,0.1}N=\{0.7, 0.3, 0.2, 0.1\}N={0.7,0.3,0.2,0.1}.
+
+(a) Compute the ROC-AUC
+
+AUC can be computed as:
+
+\text{AUC}=\frac{\text{# correctly ranked positive-negative pairs}}{\text{total positive-negative pairs}}
+
+There are:
+
+3×4=123 \times 4 = 123×4=12
+
+positive-negative pairs.
+
+Compare each positive with each negative:
+
+Positive	Negative	Positive > Negative?0.9	0.7	✓
+0.9	0.3	✓
+0.9	0.2	✓
+0.9	0.1	✓
+0.6	0.7	✗
+0.6	0.3	✓
+0.6	0.2	✓
+0.6	0.1	✓
+0.4	0.7	✗
+0.4	0.3	✓
+0.4	0.2	✓
+0.4	0.1	✓
+
+Correctly ranked pairs =10= 10=10.
+
+Therefore,
+
+AUC=1012=56≈0.8333\boxed{\text{AUC}=\frac{10}{12}=\frac{5}{6}\approx 0.8333}AUC=1210​=65​≈0.8333​
+(b) What does AUC mean in terms of pairs of examples?
+
+AUC is the probability that a randomly chosen positive example is assigned a higher score than a randomly chosen negative example.
+
+So here:
+
+AUC=0.8333\boxed{\text{AUC}=0.8333}AUC=0.8333​
+
+means that approximately 83.3% of positive-negative pairs are ranked correctly by the model.
+
+(c) What AUC would a model with no ranking ability have?
+
+A model with no discrimination ability ranks positives above negatives only half the time (equivalent to random guessing).
+
+AUC=0.5\boxed{\text{AUC}=0.5}AUC=0.5​
+
+So:
+
+Perfect ranking: AUC =1.0=1.0=1.0
+Random ranking: AUC =0.5=0.5=0.5
+Perfectly wrong ranking: AUC =0.0=0.0=0.0 (all rankings reversed)

@@ -1,0 +1,41 @@
+The two numbers together suggest overfitting.
+
+99% training accuracy means the classifier fits the training data extremely well. It makes very few errors on the examples it was trained on.
+78% mean 5-fold cross-validation accuracy estimates performance on unseen data. The large drop from 99% to 78% indicates that the model does not generalize nearly as well as it memorizes the training set.
+
+The majority-class baseline is also important:
+
+If 76% of all examples belong to one class, then a trivial classifier that always predicts the majority class would achieve about 76% accuracy.
+The model's cross-validation accuracy of 78% is only 2 percentage points better than this naive baseline.
+
+Therefore, the colleague's claim that "78% is a solid result" is not well supported by the information given. In isolation, 78% may sound reasonable, but relative to a 76% baseline it represents only a small improvement. Depending on the sample size, that improvement might not even be statistically significant.
+
+What I would do next
+
+Compare against simple baselines
+
+Majority-class predictor (76%).
+Simple models such as logistic regression or a shallow decision tree.
+
+Use better metrics than accuracy
+
+Confusion matrix.
+Precision, recall, and F1 score.
+ROC-AUC or PR-AUC, especially because the classes are imbalanced.
+
+Investigate overfitting
+
+Reduce model complexity.
+Add regularization.
+Perform feature selection.
+Gather more training data if possible.
+
+Examine cross-validation variability
+
+Look at the accuracy for each fold, not just the mean.
+Compute confidence intervals or standard deviations.
+Conclusion
+
+The key interpretation is:
+
+The model achieves 99% on training data but only 78% on cross-validation, indicating substantial overfitting. Since a naive majority-class classifier already achieves 76% accuracy, the practical gain is small. I would not conclude the model is performing well until I compare it with baseline models and evaluate class-sensitive metrics such as precision, recall, F1, and ROC-AUC.

@@ -1,0 +1,41 @@
+For a 95% confidence interval (0.3, 2.1) for the true difference in mean outcome:
+
+(a) “There is a 95% probability that the true difference lies between 0.3 and 2.1.”
+
+Incorrect (under the frequentist interpretation).
+
+Once the interval has been calculated, the true difference is a fixed (but unknown) value. It either lies in the interval or it does not. We do not assign a 95% probability to the parameter being in this particular observed interval.
+
+The correct interpretation is that the method used to construct the interval has a 95% long-run success rate.
+
+(b) “If the study were repeated many times, about 95% of the intervals constructed this way would contain the true difference.”
+
+Correct.
+
+This is the standard frequentist interpretation of a 95% confidence interval.
+
+If we repeatedly drew samples and computed confidence intervals using the same procedure, then approximately 95% of those intervals would capture the true population difference, while about 5% would miss it.
+
+(c) “95% of individual patients have outcome differences between 0.3 and 2.1.”
+
+Incorrect.
+
+The interval refers to a population parameter (the difference in mean outcomes between treatment and control), not to the distribution of outcomes for individual patients.
+
+A confidence interval says nothing directly about where 95% of individual observations lie. That would require a prediction interval or information about the variability of individual outcomes.
+
+(d) “A two-sided test of ‘no difference’ at the 5% level would reject.”
+
+Correct.
+
+The null hypothesis of no difference corresponds to a true difference of 0.
+
+Because 0 is not contained in the 95% confidence interval (0.3, 2.1), a two-sided hypothesis test at significance level α=0.05\alpha = 0.05α=0.05 would reject the null hypothesis.
+
+This is a general relationship: for many standard procedures, a two-sided hypothesis test at the 5% level rejects exactly when the null value lies outside the corresponding 95% confidence interval.
+
+Summary
+Statement	Correct?	Reason(a) There is a 95% probability the true difference is between 0.3 and 2.1	No	The parameter is fixed; the 95% refers to the procedure's long-run coverage.
+(b) Repeating the study many times would give intervals that contain the true difference about 95% of the time	Yes	This is the correct frequentist interpretation.
+(c) 95% of individual patients have differences between 0.3 and 2.1	No	The interval concerns a population mean difference, not individual outcomes.
+(d) A two-sided 5% test of no difference would reject	Yes	The null value 0 is outside the 95% confidence interval.
