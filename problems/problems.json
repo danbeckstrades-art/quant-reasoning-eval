@@ -1,0 +1,60 @@
+[
+  {
+    "id": "q01",
+    "topic": "p-values",
+    "difficulty": 1,
+    "question": "A two-sided test of a new drug against placebo gives p = 0.03. A colleague says: 'This means there is a 3% chance the drug has no effect.' Is the colleague correct? Explain.",
+    "reference_answer": "No. The p-value is the probability of observing data at least as extreme as what was seen, assuming the null hypothesis is true. It is not the probability that the null hypothesis is true given the data. Getting that posterior probability requires a prior (Bayes' theorem).",
+    "rubric": [
+      "States that the colleague is incorrect",
+      "Defines the p-value as a probability of data (or a more extreme result) assuming H0 is true",
+      "Distinguishes P(data | H0) from P(H0 | data)",
+      "Does not endorse the 3% interpretation, even partially"
+    ],
+    "failure_modes": [
+      "Agrees with the colleague",
+      "Says it is 'roughly' or 'loosely' the probability of no effect",
+      "Describes the p-value as the probability the result is due to chance without clarifying the conditioning"
+    ]
+  },
+  {
+    "id": "q02",
+    "topic": "confidence intervals",
+    "difficulty": 1,
+    "question": "In a random sample of 400 users, 120 prefer feature A. Compute a 95% Wald confidence interval for the population proportion and show your work.",
+    "reference_answer": "p_hat = 120/400 = 0.30. SE = sqrt(0.30 * 0.70 / 400) = 0.0229. Margin = 1.96 * 0.0229 = 0.0449. The interval is approximately (0.255, 0.345).",
+    "rubric": [
+      "p_hat = 0.30",
+      "SE = about 0.0229",
+      "Uses 1.96 as the critical value",
+      "Final interval is about (0.255, 0.345)"
+    ],
+    "failure_modes": [
+      "Uses n = 120 instead of 400 in the standard error",
+      "Uses a t critical value or another z value without justification",
+      "Arithmetic slip in the final interval"
+    ]
+  },
+  {
+    "id": "q03",
+    "topic": "Simpson's paradox",
+    "difficulty": 2,
+    "question": "A hospital compared a new treatment with standard care for 2,000 patients (1,000 per group). Each patient was classified as mild or severe before treatment. Results (recovered / total):\n\nMild: new treatment 640/800, standard care 180/200\nSevere: new treatment 60/200, standard care 280/800\n\n(a) Which treatment has the higher overall recovery rate? (b) Which has the higher recovery rate within each severity level? (c) Explain the apparent contradiction and say which treatment the data favors and why.",
+    "reference_answer": "Overall: new treatment 700/1000 = 70%, standard care 460/1000 = 46%, so the new treatment looks better. Within mild: 640/800 = 80% vs 180/200 = 90%. Within severe: 60/200 = 30% vs 280/800 = 35%. Standard care is better in both groups. This is Simpson's paradox: 80% of new-treatment patients were mild, versus only 20% of standard-care patients, and mild patients recover far more often. Severity influences both which treatment a patient received and the outcome, so it is a confounder. Because severity was determined before treatment, the stratified comparison is the valid one: the data favors standard care, and the overall figures are misleading. The conclusion depends on the causal structure: if severity were a consequence of the treatment, the overall comparison would be the relevant one.",
+    "rubric": [
+      "Overall rates are 70% (new treatment) vs 46% (standard care)",
+      "Within-group rates are 80% vs 90% (mild) and 30% vs 35% (severe), with standard care higher in both",
+      "Identifies the pattern as Simpson's paradox or confounding by severity",
+      "Explains the cause as the unequal severity mix (80% of treated patients mild vs 20% of standard-care patients)",
+      "Concludes that the data favors standard care and that the overall comparison should not be used",
+      "Justifies the stratified comparison because severity was set before treatment, or notes that the answer depends on the causal structure"
+    ],
+    "failure_modes": [
+      "Recommends the new treatment based on the overall rates",
+      "Arithmetic errors in the rates",
+      "Calls the paradox a calculation error or a statistical artifact without a causal explanation",
+      "Says to always use stratified data without reasoning about causal structure",
+      "Names confounding but never computes the numbers"
+    ]
+  }
+]
