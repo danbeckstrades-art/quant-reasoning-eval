@@ -216,5 +216,83 @@
       "Concludes there is no significant difference",
       "States that the independent test is invalid without explaining the dependence"
     ]
+  },
+  {
+    "id": "q12",
+    "topic": "overfitting",
+    "difficulty": 2,
+    "question": "A classifier reaches 99% accuracy on its training data and 78% mean accuracy in 5-fold cross-validation. In this dataset, 76% of the examples belong to the majority class. A colleague says 78% is a solid result. Interpret the two numbers and say what you would do next.",
+    "reference_answer": "The 21-point gap between training accuracy (99%) and cross-validated accuracy (78%) is a sign of overfitting: the model has memorized training examples and does not generalize. The cross-validated figure is the honest estimate of performance on new data. It also needs to be compared with the baseline: always predicting the majority class gives 76%, so the model beats it by only 2 percentage points, which is not a solid result and may be within fold-to-fold noise. Next steps: check the spread across folds, use metrics suited to imbalance (ROC-AUC, precision, recall), reduce model complexity or add regularization, use fewer or better features, or get more data, then compare against the 76% baseline again.",
+    "rubric": [
+      "Identifies overfitting from the large train/validation gap",
+      "Treats the cross-validated score, not the training score, as the estimate of generalization",
+      "Notes that 76% is the majority-class baseline, so 78% is only about 2 points better",
+      "Says the colleague's claim that 78% is solid is not supported",
+      "Suggests at least two sensible remedies (regularization, simpler model, more data, fewer features, better metrics)"
+    ],
+    "failure_modes": [
+      "Treats 99% as the model's real performance",
+      "Calls 78% good without checking the baseline",
+      "Diagnoses underfitting",
+      "Suggests testing on the training data again or tuning on the test set"
+    ]
+  },
+  {
+    "id": "q13",
+    "topic": "margin of error",
+    "difficulty": 1,
+    "question": "A poll of 500 randomly selected people has a 95% margin of error of about plus or minus 4.4 percentage points when the true proportion is near 50%. How many people must be polled to cut the margin of error in half? Explain why, and show that the answer is consistent with the formula.",
+    "reference_answer": "The margin of error is 1.96 * sqrt(p(1-p)/n), so it is proportional to 1/sqrt(n). Halving it requires multiplying n by 4: 2,000 people. Check: 1.96 * sqrt(0.25/500) = 1.96 * 0.02236 = 0.0438 (4.4 points), and 1.96 * sqrt(0.25/2000) = 1.96 * 0.01118 = 0.0219 (2.2 points). Precision has diminishing returns: each halving of the margin costs four times as many respondents.",
+    "rubric": [
+      "States that the margin of error is proportional to 1/sqrt(n)",
+      "Final answer is 2,000 people (4 times the original sample)",
+      "Verifies with the formula, giving about 4.4 and about 2.2 points",
+      "Does not answer 1,000"
+    ],
+    "failure_modes": [
+      "Answers 1,000 (assumes the margin is proportional to 1/n)",
+      "Answers 250",
+      "Answers 2,000 without any justification",
+      "Applies the formula with the wrong p(1-p)"
+    ]
+  },
+  {
+    "id": "q14",
+    "topic": "ROC-AUC",
+    "difficulty": 2,
+    "question": "A model gives these predicted scores. Positive examples: 0.9, 0.6, 0.4. Negative examples: 0.7, 0.3, 0.2, 0.1. (a) Compute the ROC-AUC. (b) State what AUC means in terms of pairs of examples. (c) What AUC would a model with no ranking ability have?",
+    "reference_answer": "AUC is the probability that a randomly chosen positive example gets a higher score than a randomly chosen negative one (ties count as half). There are 3 * 4 = 12 positive-negative pairs. The positive 0.9 beats all 4 negatives. The positive 0.6 beats 0.3, 0.2, and 0.1 (3 negatives) but not 0.7. The positive 0.4 beats 0.3, 0.2, and 0.1 (3 negatives) but not 0.7. That is 4 + 3 + 3 = 10 correctly ordered pairs out of 12, so AUC = 10/12 = 0.833. A model with no ranking ability has AUC = 0.5.",
+    "rubric": [
+      "Counts 12 positive-negative pairs",
+      "Counts 10 correctly ordered pairs (4 + 3 + 3)",
+      "AUC = 10/12, about 0.833",
+      "Defines AUC as the probability that a random positive outranks a random negative",
+      "States 0.5 for a model with no ranking ability"
+    ],
+    "failure_modes": [
+      "Miscounts the correctly ordered pairs",
+      "Uses 7 pairs instead of 12, or adds the scores instead of comparing pairs",
+      "Defines AUC as accuracy at a threshold of 0.5",
+      "Says that AUC of 0 means no ranking ability"
+    ]
+  },
+  {
+    "id": "q15",
+    "topic": "peeking",
+    "difficulty": 2,
+    "question": "An analyst checks an A/B test's p-value every week for 10 weeks and stops the experiment the first time p < 0.05, concluding the change worked. There is truly no difference between the groups. (a) Is the overall false positive rate still 5%? (b) Roughly what is it? (c) Name two ways to avoid the problem.",
+    "reference_answer": "(a) No. Each look is another chance for random fluctuation to cross the 0.05 line, so the overall false positive rate is much higher than 5%. (b) With 10 equally spaced looks and the unadjusted 0.05 threshold at each, the overall rate is about 19% (simulations and the classic sequential-testing tables give roughly 19%). (c) Fix the sample size in advance and look only once at the end, or use a sequential design with adjusted boundaries (for example alpha-spending or group sequential methods such as O'Brien-Fleming), or use an always-valid method designed for continuous monitoring.",
+    "rubric": [
+      "States that the false positive rate is not 5% and is inflated",
+      "Gives an estimate in the range of about 15 to 25% for 10 looks (the usual figure is about 19%)",
+      "Explains the cause as repeated chances to cross the threshold",
+      "Names two valid remedies (fixed sample size with one look, alpha-spending or group sequential boundaries, always-valid methods)"
+    ],
+    "failure_modes": [
+      "Says the rate remains 5%",
+      "Gives 50% or higher without justification",
+      "Suggests lowering alpha to 0.01 only, without a justification",
+      "Says that peeking is harmless as long as the result is real"
+    ]
   }
 ]
