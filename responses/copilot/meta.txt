@@ -1,5 +1,5 @@
-model name and version: Microsoft Copilot Auto
+model name and version: Microsoft Copilot, mode set to Auto (the app shows no specific model version)
 date: 10/31/2026
 new or temporary chat (yes/no): yes, a new chat for each question
-tools or web search on (yes/no): (replace with yes or no, and what mode you used)
+tools or web search on (yes/no): I did not switch on search, Think Deeper, or any plugins. Auto mode may search the web on its own, but the saved answers show no source links.
 notes: Web app in Edge, default settings. Each question was pasted exactly as written, with nothing added and no follow-ups.
