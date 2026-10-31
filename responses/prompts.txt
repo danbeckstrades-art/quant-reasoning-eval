@@ -1,0 +1,49 @@
+===== q01 =====
+A two-sided test of a new drug against placebo gives p = 0.03. A colleague says: 'This means there is a 3% chance the drug has no effect.' Is the colleague correct? Explain.
+
+===== q02 =====
+In a random sample of 400 users, 120 prefer feature A. Compute a 95% Wald confidence interval for the population proportion and show your work.
+
+===== q03 =====
+A hospital compared a new treatment with standard care for 2,000 patients (1,000 per group). Each patient was classified as mild or severe before treatment. Results (recovered / total):
+
+Mild: new treatment 640/800, standard care 180/200
+Severe: new treatment 60/200, standard care 280/800
+
+(a) Which treatment has the higher overall recovery rate? (b) Which has the higher recovery rate within each severity level? (c) Explain the apparent contradiction and say which treatment the data favors and why.
+
+===== q04 =====
+A data scientist fits a StandardScaler on the entire dataset, then runs 5-fold cross-validation on the scaled features and reports the mean validation score. A reviewer says this is data leakage. Is the reviewer right? Explain what the problem is, how large it is likely to be here, and how to fix it.
+
+===== q05 =====
+A screening test for a condition has 99% sensitivity and 95% specificity. The condition affects 1% of the population. A randomly chosen person tests positive. What is the probability that they actually have the condition? Show your work.
+
+===== q06 =====
+You plan an A/B test to detect an increase in conversion from 10% to 12%, using a two-sided test with alpha = 0.05 and 80% power. Using the normal approximation for two proportions, about how many users are needed per group? Show the formula and the calculation.
+
+===== q07 =====
+A team tests 20 independent metrics in an experiment where no metric truly changed, each at alpha = 0.05. (a) What is the probability that at least one metric is declared significant? (b) What is the expected number of false positives? (c) What significance threshold does a Bonferroni correction give for each test?
+
+===== q08 =====
+In a set of 10,000 transactions, 100 are fraudulent. Model A flags nothing. Model B flags 200 transactions and catches 80 of the 100 fraudulent ones. Compute accuracy, precision, and recall for both models, and say which model is more useful and why accuracy is a poor guide here.
+
+===== q09 =====
+A study reports a 95% confidence interval of (0.3, 2.1) for the difference in mean outcome between treatment and control. For each statement, say whether it is a correct interpretation and why: (a) There is a 95% probability that the true difference lies between 0.3 and 2.1. (b) If the study were repeated many times, about 95% of the intervals constructed this way would contain the true difference. (c) 95% of individual patients have outcome differences between 0.3 and 2.1. (d) A two-sided test of 'no difference' at the 5% level would reject.
+
+===== q10 =====
+A school gives all students a test, then enrolls the lowest-scoring students in a tutoring program and retests them. Scores on both tests have the same distribution (mean 70, standard deviation 15), and the correlation between the two test scores is 0.6. The students enrolled in tutoring averaged 1.5 standard deviations below the mean on the first test, and their average gain on the retest was 8 points. The principal says this shows the tutoring works. Is that conclusion justified? Use the numbers to explain.
+
+===== q11 =====
+The same 30 users were measured before and after a redesign. The mean after-minus-before difference is 2.0 and the standard deviation of the 30 paired differences is 5.0. An analyst runs a two-sample (independent) t-test treating the before and after measurements as two separate groups. (a) What is wrong with that approach? (b) Run the correct test: compute the t statistic and say whether it rejects at the 5% level (the two-sided critical value for 29 degrees of freedom is about 2.045).
+
+===== q12 =====
+A classifier reaches 99% accuracy on its training data and 78% mean accuracy in 5-fold cross-validation. In this dataset, 76% of the examples belong to the majority class. A colleague says 78% is a solid result. Interpret the two numbers and say what you would do next.
+
+===== q13 =====
+A poll of 500 randomly selected people has a 95% margin of error of about plus or minus 4.4 percentage points when the true proportion is near 50%. How many people must be polled to cut the margin of error in half? Explain why, and show that the answer is consistent with the formula.
+
+===== q14 =====
+A model gives these predicted scores. Positive examples: 0.9, 0.6, 0.4. Negative examples: 0.7, 0.3, 0.2, 0.1. (a) Compute the ROC-AUC. (b) State what AUC means in terms of pairs of examples. (c) What AUC would a model with no ranking ability have?
+
+===== q15 =====
+An analyst checks an A/B test's p-value every week for 10 weeks and stops the experiment the first time p < 0.05, concluding the change worked. There is truly no difference between the groups. (a) Is the overall false positive rate still 5%? (b) Roughly what is it? (c) Name two ways to avoid the problem.

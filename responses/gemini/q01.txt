@@ -1,0 +1,37 @@
+The colleague is incorrect.
+
+A 
+p-value does not state the probability that the null hypothesis (that the drug has no effect) is true.
+
+Why this interpretation is wrong
+What the colleague thinks 
+p=0.03 means:
+
+P(Null Hypothesis is True∣Observed Data)=0.03
+
+What 
+p=0.03 actually means:
+
+P(Observing data as extreme as or more extreme than ours∣Null Hypothesis is True)=0.03
+
+In short, the 
+p-value assumes from the start that the drug has no effect, and then measures how unusual or extreme the trial's results are under that assumption.
+
+The Correct Interpretation
+A 
+p-value of 
+0.03 means that if the drug were completely ineffective, there would only be a 
+3% chance of seeing a treatment effect as large as (or larger than) the one observed in this study purely due to random sampling variability.
+
+The Logic Trap: Confusing Conditional Probabilities
+Confusing these two concepts is known as the p-value fallacy or the prosecutor's fallacy. To see why swapping the condition changes the logic, consider this analogy:
+
+P(Being dead∣You were shot in the head)≈99% (Very likely)
+
+P(You were shot in the head∣You are dead)≪1% (Extremely unlikely—most people die of other causes)
+
+To calculate the actual probability that the drug has no effect given the data (
+P(H 
+0
+​
+ ∣Data)), you would need to use Bayesian statistics, which requires factoring in the prior probability that the drug works before running the trial.

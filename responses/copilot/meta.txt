@@ -1,0 +1,5 @@
+model name and version:
+date:
+new or temporary chat (yes/no):
+tools or web search on (yes/no):
+notes:

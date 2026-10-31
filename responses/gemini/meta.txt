@@ -1,0 +1,5 @@
+model name and version: Gemini Auto (the app shows only "Auto", no specific model version)
+date: 10/31/2026
+new or temporary chat (yes/no): yes, a new chat for each question
+tools or web search on (yes/no): no, I did not switch on any tools, extensions, or search
+notes: Web app, default settings. Each question was pasted exactly as written in prompts, with nothing added and no follow-ups.
