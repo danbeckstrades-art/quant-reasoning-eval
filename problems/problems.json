@@ -56,5 +56,165 @@
       "Says to always use stratified data without reasoning about causal structure",
       "Names confounding but never computes the numbers"
     ]
+  },
+  {
+    "id": "q04",
+    "topic": "data leakage",
+    "difficulty": 2,
+    "question": "A data scientist fits a StandardScaler on the entire dataset, then runs 5-fold cross-validation on the scaled features and reports the mean validation score. A reviewer says this is data leakage. Is the reviewer right? Explain what the problem is, how large it is likely to be here, and how to fix it.",
+    "reference_answer": "Yes, it is leakage. The scaler's mean and standard deviation were computed using the validation rows, so information from the validation folds influenced the training transformation, and the validation score is not a clean estimate of performance on new data. For standardization the effect is usually small, because a mean and standard deviation carry little information about individual labels, but the procedure is still wrong in principle and it matters much more for steps that use the target or many features, such as feature selection, target encoding, or imputation fit on all rows. The fix is to put the scaler and the model in a Pipeline and cross-validate the pipeline, so the scaler is refit on the training portion of each fold.",
+    "rubric": [
+      "States that the reviewer is right, because the scaler saw the validation rows",
+      "Explains that validation statistics influenced the transformation applied to the training data",
+      "Notes that the effect for scaling alone is usually small, without claiming it is harmless in principle",
+      "Mentions that target-based or selection-based preprocessing makes the problem much worse",
+      "Gives the fix: fit preprocessing inside each fold, for example with a Pipeline"
+    ],
+    "failure_modes": [
+      "Says there is no leakage because the labels were not used",
+      "Says the leakage is severe for plain standardization",
+      "Suggests splitting once into train and test and scaling the test set separately, without addressing cross-validation",
+      "Gives the right diagnosis but no fix"
+    ]
+  },
+  {
+    "id": "q05",
+    "topic": "base rates",
+    "difficulty": 2,
+    "question": "A screening test for a condition has 99% sensitivity and 95% specificity. The condition affects 1% of the population. A randomly chosen person tests positive. What is the probability that they actually have the condition? Show your work.",
+    "reference_answer": "P(positive) = 0.01 * 0.99 + 0.99 * 0.05 = 0.0099 + 0.0495 = 0.0594. P(condition | positive) = 0.0099 / 0.0594 = 0.1667, about 16.7% (1 in 6). Most positive results are false positives, because the condition is rare: among 10,000 people, about 99 true positives and about 495 false positives.",
+    "rubric": [
+      "Uses Bayes' theorem or a natural-frequency table",
+      "True positive mass = 0.0099 and false positive mass = 0.0495",
+      "Final answer is about 16.7% (1 in 6)",
+      "Explains that the low prevalence makes most positives false positives"
+    ],
+    "failure_modes": [
+      "Answers 99% (confuses sensitivity with the positive predictive value)",
+      "Answers 95%",
+      "Uses specificity as the false positive rate (0.95 instead of 0.05)",
+      "Arithmetic slip in the final division"
+    ]
+  },
+  {
+    "id": "q06",
+    "topic": "sample size",
+    "difficulty": 2,
+    "question": "You plan an A/B test to detect an increase in conversion from 10% to 12%, using a two-sided test with alpha = 0.05 and 80% power. Using the normal approximation for two proportions, about how many users are needed per group? Show the formula and the calculation.",
+    "reference_answer": "n per group = (z_{alpha/2} + z_beta)^2 * [p1(1-p1) + p2(1-p2)] / (p1 - p2)^2. With z_{alpha/2} = 1.96 and z_beta = 0.8416, the sum is 2.8016 and its square is about 7.849. The variance term is 0.10 * 0.90 + 0.12 * 0.88 = 0.09 + 0.1056 = 0.1956, and (p1 - p2)^2 = 0.0004. So n = 7.849 * 0.1956 / 0.0004, which is about 3,838 per group (roughly 3,840), or about 7,700 users in total. Answers between about 3,800 and 3,900 per group are acceptable.",
+    "rubric": [
+      "Uses z values 1.96 and 0.84 (or 0.8416) for alpha = 0.05 two-sided and 80% power",
+      "Includes both groups' variance terms p1(1-p1) and p2(1-p2)",
+      "Uses a difference of 0.02, squared to 0.0004 in the denominator",
+      "Final answer is between about 3,800 and 3,900 per group",
+      "States whether the figure is per group or total"
+    ],
+    "failure_modes": [
+      "Reports the total sample as if it were per group, or the reverse",
+      "Uses one-sided z (1.645) without saying so",
+      "Omits the second variance term",
+      "Forgets to square the effect size or the z sum"
+    ]
+  },
+  {
+    "id": "q07",
+    "topic": "multiple comparisons",
+    "difficulty": 1,
+    "question": "A team tests 20 independent metrics in an experiment where no metric truly changed, each at alpha = 0.05. (a) What is the probability that at least one metric is declared significant? (b) What is the expected number of false positives? (c) What significance threshold does a Bonferroni correction give for each test?",
+    "reference_answer": "(a) 1 - 0.95^20 = 1 - 0.3585 = 0.6415, about 64%. (b) 20 * 0.05 = 1 false positive on average. (c) Bonferroni threshold = 0.05 / 20 = 0.0025. With that threshold the chance of at least one false positive is at most about 5% (more precisely 1 - 0.9975^20, about 4.9%).",
+    "rubric": [
+      "Uses 1 - 0.95^20 for part (a)",
+      "Final answer for (a) is about 64%",
+      "Expected number of false positives for (b) is 1",
+      "Bonferroni threshold for (c) is 0.0025",
+      "Does not claim the probability in (a) is 5% or 100%"
+    ],
+    "failure_modes": [
+      "Answers 5% or 100% for (a)",
+      "Computes 20 * 0.05 = 100% as the probability",
+      "Divides alpha by the wrong number for Bonferroni",
+      "Confuses expected number of false positives with probability of at least one"
+    ]
+  },
+  {
+    "id": "q08",
+    "topic": "imbalanced metrics",
+    "difficulty": 1,
+    "question": "In a set of 10,000 transactions, 100 are fraudulent. Model A flags nothing. Model B flags 200 transactions and catches 80 of the 100 fraudulent ones. Compute accuracy, precision, and recall for both models, and say which model is more useful and why accuracy is a poor guide here.",
+    "reference_answer": "Model A: accuracy = 9,900/10,000 = 99%, recall = 0, precision undefined (no positive predictions). Model B: true positives = 80, false positives = 200 - 80 = 120, false negatives = 20, true negatives = 9,900 - 120 = 9,780. Accuracy = (80 + 9,780)/10,000 = 98.6%, precision = 80/200 = 40%, recall = 80/100 = 80%. Model B has lower accuracy than Model A but it is far more useful, because it finds 80% of the fraud, while Model A finds none. Accuracy is dominated by the 99% majority class, so a model that never flags anything scores 99%.",
+    "rubric": [
+      "Model A accuracy 99%, recall 0",
+      "Model B true positives 80, false positives 120, false negatives 20, true negatives 9,780",
+      "Model B accuracy 98.6%, precision 40%, recall 80%",
+      "Concludes that Model B is more useful despite its lower accuracy",
+      "Explains that accuracy is misleading because of the class imbalance"
+    ],
+    "failure_modes": [
+      "Computes precision as 80/100 (confuses it with recall)",
+      "Takes false positives as 200 instead of 120",
+      "Prefers Model A because of its higher accuracy",
+      "Gives a precision value for Model A without noting it is undefined"
+    ]
+  },
+  {
+    "id": "q09",
+    "topic": "confidence intervals",
+    "difficulty": 2,
+    "question": "A study reports a 95% confidence interval of (0.3, 2.1) for the difference in mean outcome between treatment and control. For each statement, say whether it is a correct interpretation and why: (a) There is a 95% probability that the true difference lies between 0.3 and 2.1. (b) If the study were repeated many times, about 95% of the intervals constructed this way would contain the true difference. (c) 95% of individual patients have outcome differences between 0.3 and 2.1. (d) A two-sided test of 'no difference' at the 5% level would reject.",
+    "reference_answer": "(a) Incorrect as a statement about a frequentist confidence interval: the true difference is a fixed number, and the 95% refers to the long-run coverage of the procedure, not the probability for this particular interval. (It is the interpretation of a Bayesian credible interval.) (b) Correct: this is the definition of coverage. (c) Incorrect: the interval describes uncertainty about the mean difference, not the spread of individual outcomes. (d) Correct: the interval excludes 0, which is equivalent to rejecting the null of no difference at the 5% level.",
+    "rubric": [
+      "Marks (b) and (d) as correct",
+      "Marks (a) and (c) as incorrect",
+      "Explains that the 95% in (b) refers to long-run coverage of the procedure",
+      "Explains that (c) confuses uncertainty about a mean with the spread of individual values",
+      "Links (d) to the interval excluding 0"
+    ],
+    "failure_modes": [
+      "Marks (a) as correct without noting it is the Bayesian reading",
+      "Marks (c) as correct",
+      "Says (d) is wrong because a confidence interval is not a test",
+      "Gives correct verdicts with no justification"
+    ]
+  },
+  {
+    "id": "q10",
+    "topic": "regression to the mean",
+    "difficulty": 3,
+    "question": "A school gives all students a test, then enrolls the lowest-scoring students in a tutoring program and retests them. Scores on both tests have the same distribution (mean 70, standard deviation 15), and the correlation between the two test scores is 0.6. The students enrolled in tutoring averaged 1.5 standard deviations below the mean on the first test, and their average gain on the retest was 8 points. The principal says this shows the tutoring works. Is that conclusion justified? Use the numbers to explain.",
+    "reference_answer": "Not justified. The selected students averaged 1.5 * 15 = 22.5 points below the mean on test 1 (a score of 47.5). With a correlation of 0.6, the expected retest score is 0.6 * (-22.5) = -13.5 points relative to the mean, which is 56.5. So the expected gain from regression to the mean alone, with no tutoring, is 22.5 - 13.5 = 9 points. The observed gain of 8 points is no larger than that, so the data give no evidence that tutoring helped. Extreme scores contain luck as well as ability, and the luck does not repeat. To estimate the effect of tutoring, compare with a control group selected the same way (ideally randomized among eligible students).",
+    "rubric": [
+      "Concludes that the principal's inference is not justified",
+      "Names regression to the mean as the cause",
+      "Computes the first-test deficit as 22.5 points (47.5 versus a mean of 70)",
+      "Computes the expected retest deviation as 0.6 * (-22.5) = -13.5, giving an expected gain of 9 points without any treatment",
+      "Notes that the observed gain of 8 is no larger than the 9 expected from regression alone",
+      "Recommends a control group selected the same way, or randomization"
+    ],
+    "failure_modes": [
+      "Accepts the principal's conclusion",
+      "Names regression to the mean but never computes the expected gain",
+      "Computes the expected gain as 22.5 * 0.6 = 13.5 (applies the correlation to the wrong quantity)",
+      "Recommends comparing with the whole student population instead of an equally selected group"
+    ]
+  },
+  {
+    "id": "q11",
+    "topic": "paired tests",
+    "difficulty": 2,
+    "question": "The same 30 users were measured before and after a redesign. The mean after-minus-before difference is 2.0 and the standard deviation of the 30 paired differences is 5.0. An analyst runs a two-sample (independent) t-test treating the before and after measurements as two separate groups. (a) What is wrong with that approach? (b) Run the correct test: compute the t statistic and say whether it rejects at the 5% level (the two-sided critical value for 29 degrees of freedom is about 2.045).",
+    "reference_answer": "(a) The same users appear in both groups, so the measurements are not independent. Users differ a lot from each other, and an independent test treats that between-user variation as noise, which usually reduces power; a paired test removes it by analyzing each user's difference. (b) Paired t-test: t = mean difference / (SD of differences / sqrt(n)) = 2.0 / (5.0 / sqrt(30)) = 2.0 / 0.913 = 2.19 on 29 degrees of freedom. This exceeds 2.045, so the test rejects at the 5% level; the two-sided p-value is about 0.04 (between 0.03 and 0.05).",
+    "rubric": [
+      "Identifies that the two groups contain the same users, so the samples are dependent",
+      "Explains that the independent test ignores the pairing and usually loses power",
+      "Uses the paired differences, with standard error 5.0 / sqrt(30), about 0.913",
+      "Computes t of about 2.19 with 29 degrees of freedom",
+      "Concludes that the test rejects at the 5% level (2.19 > 2.045), with a p-value of about 0.04"
+    ],
+    "failure_modes": [
+      "Uses n = 60 or 58 degrees of freedom",
+      "Divides by 5.0 without the square root of n",
+      "Concludes there is no significant difference",
+      "States that the independent test is invalid without explaining the dependence"
+    ]
   }
 ]
