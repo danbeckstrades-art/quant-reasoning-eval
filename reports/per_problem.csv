@@ -1,0 +1,16 @@
+qid,topic,gemini_overall,gemini_coverage,copilot_overall,copilot_coverage
+q01,p-values,1,1.0,1,1.0
+q02,confidence intervals,1,1.0,1,1.0
+q03,Simpson's paradox,1,0.83,1,1.0
+q04,data leakage,0,0.6,1,1.0
+q05,base rates,1,0.75,1,1.0
+q06,sample size,1,1.0,1,1.0
+q07,multiple comparisons,1,1.0,1,1.0
+q08,imbalanced metrics,1,1.0,1,1.0
+q09,confidence intervals,0,0.8,1,1.0
+q10,regression to the mean,1,1.0,1,1.0
+q11,paired tests,1,0.8,1,0.6
+q12,overfitting,1,0.8,1,1.0
+q13,margin of error,1,1.0,1,1.0
+q14,ROC-AUC,1,1.0,1,1.0
+q15,peeking,0,0.75,0,0.75
