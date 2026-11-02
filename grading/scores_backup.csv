@@ -1,0 +1,31 @@
+blind_id,qid,item1,item2,item3,item4,item5,item6,overall_correct,error_type,notes
+B01,q05,1,1,1,1,,,1,none,"formatting garbled by copy, not penalized"
+B02,q15,1,0,1,1,,,0,unjustified_claim,range 20-30% overstates the usual 19%; also groups Bayesian approaches with alpha-spending as if they cap the frequentist false positive rate
+B03,q11,1,1,1,1,0,,1,none,"item 5 missed only the p-value, which the question did not ask for (rubric over-demands); answer is correct"
+B04,q12,1,1,1,1,1,,1,none,complete; also suggests checking per-fold variability and comparing against simple baselines
+B05,q08,1,1,1,1,1,,1,none,"complete; Model A precision given as ""undefined (or 0)"", acceptable; formatting garbled by copy"
+B06,q07,1,1,1,1,1,,1,none,complete and correct; explicit independence assumption; formatting garbled by copy
+B07,q06,1,1,1,1,1,,1,none,"correct; used the pooled/unpooled formula (3,841) and also reported the simple formula (3,839); both within the accepted band; formatting garbled by copy"
+B08,q13,1,1,1,1,,,1,none,complete and correct; derives k=4 algebraically and verifies numerically; formatting garbled by copy
+B09,q12,1,0,1,1,1,,1,none,item 2 only implicit: compares CV to baseline but never states CV is the honest estimate of generalization; no incorrect claims
+B10,q01,1,1,1,1,,,1,none,complete; uses smoke/fire analogy; notes the real quantity needs Bayesian methods; formatting garbled by copy
+B11,q10,1,1,1,1,1,1,1,none,"complete and correct; derives expected gain of 9 vs observed 8; control group requirement stated as a condition, not as an explicit recommendation (item 6 judged met); formatting garbled by copy"
+B12,q11,1,0,1,1,0,,1,none,"item 2: no mention of lost power, only pairing and SE; item 3: SE value not printed but formula used; item 5: no p-value (rubric over-demands, same as B03); no incorrect claims"
+B13,q15,1,0,1,1,,,0,concept,estimate ~40% assumes independent looks (1-0.95^10); looks share accumulating data so true rate is ~19% (my own A/A simulation gave 19.2%); response acknowledged non-independence but still reported 40% as standard; remedies fine
+B14,q07,1,1,1,1,1,,1,none,complete and correct; binomial framing for expected value; formatting garbled by copy
+B15,q02,1,1,1,1,,,1,none,"complete and correct; Wald formula, SE and margin shown; interpretation stated as ""95% confident"", fine for this question; formatting garbled by copy"
+B16,q13,1,1,1,1,,,1,none,"complete and correct; simplifies MOE to 0.98/sqrt(n), solves algebraically, verifies numerically; formatting garbled by copy"
+B17,q02,1,1,1,1,,,1,none,"complete and correct; more precise intermediate values than the reference (SE 0.02291, ME 0.04491); formatting garbled by copy"
+B18,q14,1,1,1,1,1,,1,none,"complete and correct; enumerates all 12 pairs explicitly, mentions tie handling; formatting garbled by copy"
+B19,q04,1,1,1,1,1,,1,none,"complete; correct Pipeline code; lumps PCA with target-based steps as ""seriously inflated"" which overstates unsupervised leakage, hedged with ""can"", not penalized; formatting garbled by copy"
+B20,q03,1,1,1,1,1,0,1,none,"correct numbers and conclusion; item 6 not explicit: says ""baseline severity"" but never says stratification is valid because severity precedes treatment or that it depends on causal structure; formatting garbled by copy"
+B21,q03,1,1,1,1,1,1,1,none,"complete; item 6 met: states severity was measured before treatment, which justifies the stratified comparison; shows allocation table; formatting garbled by copy"
+B22,q14,1,1,1,1,1,,1,none,complete and correct; pair-by-pair table with 10 of 12 correct; no mention of tie handling (not required); formatting garbled by copy
+B23,q05,1,1,1,0,,,1,none,"correct method, numbers and result; item 4 only implied through the 99 of 594 frequencies, never says low prevalence is the reason most positives are false; formatting garbled by copy"
+B24,q10,1,1,1,1,1,1,1,none,"complete and correct; regression formula E(Y|X)=mu+r(X-mu) used explicitly; control group of low-scorers recommended explicitly (item 6 clearly met); opening says ""exactly"" while 8 vs 9, minor; formatting garbled by copy"
+B25,q08,1,1,1,1,1,,1,none,"complete and correct; Model A precision given as undefined (or 0%), acceptable; summary table included; formatting garbled by copy"
+B26,q09,0,1,1,1,1,,0,other,"labels (d) ""Incorrect"" but its own explanation concludes the test would reject (statement is true); verdict contradicts reasoning; (a),(b),(c) handled well; formatting garbled by copy"
+B27,q09,1,1,1,1,1,,1,none,"complete and correct; all four verdicts match reasoning; summary table at the end; does not mention Bayesian reading of (a), not required; formatting garbled by copy"
+B28,q01,1,1,1,1,,,1,none,complete and correct; analogy of dead given shot vs shot given dead; says P(H0|data) needs a Bayesian analysis with a prior; formatting garbled by copy
+B29,q04,1,1,0,0,0,,0,incomplete,"no fix given (question asked for one); no mention of target-based or selection-based leakage; overstates severity for small datasets (""massive influence""); diagnosis and mechanism correct; check that the saved file is not truncated"
+B30,q06,1,1,1,1,1,,1,none,"complete and correct; pooled/unpooled formula; computes 3,838 and reports 3,840 (rounding only); formatting garbled by copy"
